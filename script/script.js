@@ -17,7 +17,7 @@ console.log(typeof income);
 console.log(typeof deposit);
 console.log(ddExpenses.length);
 console.log(`Период равен ${period} месяцев`);
-console.log(`Цель заработать ${mission} зимбабвийский доллар`);
+console.log(`Цель заработать ${mission} 3имбабвийский доллар`);
 console.log(ddExpenses.toLocaleLowerCase().split(', '));
 
 
