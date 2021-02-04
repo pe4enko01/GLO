@@ -3,13 +3,13 @@ income = "Паперть",
 ddExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую", 
 "Лобстеры, аренда виллы, зарплата прислуге"),
 deposit = confirm("Есть ли у вас депозит в банке?"),
-expenses1 = prompt("Введите обязательную статью расходов?"),
-expenses2 = prompt("Введите обязательную статью расходов?"),
-amount1 = prompt("Во сколько это обойдется?"),
-amount2 = prompt("Во сколько это обойдется?"),
+expenses1 = prompt("Введите обязательную первую статью расходов?"),
+amount1 = prompt("Во сколько обойдется первая статья?"),
+expenses2 = prompt("Введите обязательную втрорую статью расходов?"),
+amount2 = prompt("Во сколько обойдется сторая статья?"),
 mission = 1,
 period = 8,
-budgetMonth = +money  - +expenses1  + +expenses2;
+budgetMonth = parseFloat(money)  - parseFloat(amount1)  - parseFloat(amount2);
 
 
 console.log(typeof money);
@@ -24,7 +24,13 @@ console.log(ddExpenses.toLocaleLowerCase().split(', '));
 let budgetDay = Math.floor(budgetMonth/30);
 
 console.log(`Бюджет на месяц ${budgetMonth}`);
-console.log(`Цель будет достигната за ${Math.ceil(mission/budgetMonth)} месяцев(-а)`);
+
+if(budgetMonth > 0){
+    console.log(`Цель будет достигната за ${Math.ceil(mission/budgetMonth)} месяцев(-а)`); 
+}else{
+    console.log(`Жизнь боль`);
+}
+
 console.log(`Бюджет на день ${budgetDay}`);
 
 if(budgetDay >= 1200){
