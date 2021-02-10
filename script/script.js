@@ -1,29 +1,23 @@
+"use strict";
+
+let amount = [];
+let expenses = [];
 let isNumber = function(n){
     return !isNaN(parseFloat(n) && isFinite(n));
 };
-let amount1IsNumber = function(){
-    do{
-    amount1 = prompt("Во сколько обойдется первая статья?");}
-    while (!isNumber(amount1));
-};
-
-let amount2IsNumber = function(){
-    do{
-    amount2 = prompt("Во сколько обойдется первая статья?")}
-    while (!isNumber(amount2));
-};
 
 let money,
-amount1,
-amount2,
 income = "Паперть",
 ddExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую", 
 "Лобстеры, аренда виллы, зарплата прислуге"),
-deposit = confirm("Есть ли у вас депозит в банке?"),
-expenses1 = prompt("Введите обязательную первую статью расходов?");
-amount1IsNumber();
-let expenses2 = prompt("Введите обязательную втрорую статью расходов?");
-amount2IsNumber();
+deposit = confirm("Есть ли у вас депозит в банке?");
+
+for(let i = 0; i < 2; i++){
+    expenses[i] = prompt(`Введите обязательную ${i === 0 ? "Первую" : "Вторую"} статью расходов?`);
+    do{
+        amount[i] = prompt(`Во сколько обойдется ${i === 0 ? "Первая" : "Вторая"} статья?`)}
+        while (!isNumber(amount[i]));
+};
 
 let mission = 1,
 period = 8;
@@ -45,16 +39,17 @@ showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
 
-console.log(ddExpenses.length);
+//console.log(ddExpenses.length);
 console.log(`Период равен ${period} месяцев`);
 console.log(`Цель заработать ${mission} 3имбабвийский доллар`);
 console.log(ddExpenses.toLocaleLowerCase().split(', '));
 
 function getExpensesMonth(){
-    return (parseFloat(amount1) + parseFloat(amount2));
+    
+    return (parseFloat(amount[0]) + parseFloat(amount[1]));
 }
 function getAccumulatedMonth(){
-    return (parseFloat(money)  - parseFloat(amount1)  - parseFloat(amount2));
+    return (parseFloat(money)  - getExpensesMonth());
 }
 let accumulatedMonth = getAccumulatedMonth();
 
