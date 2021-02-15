@@ -76,11 +76,13 @@ console.log(`Наша программа включает в себя данны
 for (let key in appData) {
     if(typeof(appData[key]) !== 'function'){
         if (typeof(appData[key]) === 'object') {
+            let popr = "";
             for (let i in appData[key]) {
-                console.log(`${i} ${appData[key][i]}`);
+                popr +=`${i} : ${appData[key][i]}, `;
             }
+            console.log(`${key} : {${popr.slice(0,length-2)}}`);
         } else {
-            console.log(`${key} ${appData[key]}`)
+            console.log(`${key} : ${appData[key]}`)
         }
     }
 }
