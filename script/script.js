@@ -17,7 +17,7 @@ let appData = {
     deposit: true,
     mission: 700000,
     period:10,
-    ddExpenses:0,
+    addExpenses:0,
     budgetDay: 0,
     budgetMonth: 0,
     expensesMonth: 0,
@@ -54,7 +54,12 @@ let appData = {
             addExp = prompt("Перечислите возможные расходы за рассчитываемый период через запятую", 
             "Лобстеры, аренда виллы, зарплата прислуге");
         };
-        appData.ddExpenses = addExp.toLocaleLowerCase().split(', ');
+        let newarr = addExp.toLocaleLowerCase().split(', ');
+        console.log(newarr);
+        for(let i = 0; i < newarr.length; i++){
+            newarr[i] = newarr[i][0].toUpperCase() + newarr[i].slice(1);
+        };
+        appData.addExpenses = newarr.join(', ');
 
         if(confirm("Есть ли у вас дополнительный заработок?")){
             
