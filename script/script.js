@@ -54,9 +54,10 @@ let appData = {
             addExp = prompt("Перечислите возможные расходы за рассчитываемый период через запятую", 
             "Лобстеры, аренда виллы, зарплата прислуге");
         };
-        let newarr = addExp.toLocaleLowerCase().split(', ');
-        console.log(newarr);
+        let newarr = addExp.toLocaleLowerCase().split(',');
+
         for(let i = 0; i < newarr.length; i++){
+            newarr[i] = newarr[i].trim();
             newarr[i] = newarr[i][0].toUpperCase() + newarr[i].slice(1);
         };
         appData.addExpenses = newarr.join(', ');
@@ -113,7 +114,7 @@ let appData = {
     },
     calcSaveMoney: function(){
         return appData.budgetMonth  * appData.period;
-    }
+    },
 };
 
 appData.asking();
