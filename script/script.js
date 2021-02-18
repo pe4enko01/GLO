@@ -54,7 +54,7 @@ let appData = {
             addExp = prompt("Перечислите возможные расходы за рассчитываемый период через запятую", 
             "Лобстеры, аренда виллы, зарплата прислуге");
         };
-        appData.ddExpenses = `[${addExp.toLocaleLowerCase().split(', ')}]`;
+        appData.ddExpenses = addExp.toLocaleLowerCase().split(', ');
 
         if(confirm("Есть ли у вас дополнительный заработок?")){
             
