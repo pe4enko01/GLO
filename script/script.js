@@ -17,6 +17,7 @@ let appData = {
     deposit: true,
     mission: 700000,
     period:10,
+    ddExpenses:0,
     budgetDay: 0,
     budgetMonth: 0,
     expensesMonth: 0,
@@ -46,6 +47,15 @@ let appData = {
         }
     },
     asking: function () {
+
+        let addExp = prompt("Перечислите возможные расходы за рассчитываемый период через запятую", 
+        "Лобстеры, аренда виллы, зарплата прислуге");
+        while (!isNaN(Number(addExp))){
+            addExp = prompt("Перечислите возможные расходы за рассчитываемый период через запятую", 
+            "Лобстеры, аренда виллы, зарплата прислуге");
+        };
+        appData.ddExpenses = `[${addExp.toLocaleLowerCase().split(', ')}]`;
+
         if(confirm("Есть ли у вас дополнительный заработок?")){
             
             let itemIncome = prompt("Какой у вас дополнительный заработок?", "Таксую");
@@ -61,7 +71,7 @@ let appData = {
         };
         appData.deposit = confirm("Есть ли у вас депозит в банке?")
         for (let i = 0; i < 2; i++) {
-            let qustion = prompt(`Введите обязательную ${i === 0 ? "Первую" : "Вторую"} статью расходов?`);
+            let qustion = prompt(`Введите обязательную ${i === 0 ? "Первую" : "Вторую"} статью расходов?`, );
             while (!isNaN(Number(qustion))){
                 qustion = prompt(`Введите обязательную ${i === 0 ? "Первую" : "Вторую"} статью расходов?`);
             };     
