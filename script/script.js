@@ -146,27 +146,27 @@ const secondPlus = document.getElementsByTagName('button')[1];
 
 const chetbox = document.querySelector('#deposit-check');
 const additionalIncomeItem1 = document.querySelectorAll('.additional_income-item')[0];
-
 const additionalIncomeItem2 = document.querySelectorAll('.additional_income-item')[1];
 
-const values = document.getElementsByClassName('result-total');
+
+
+const budgetDay = document.getElementsByClassName('budget_day-value')[0];
+const expensesMonth = document.getElementsByClassName('expenses_month-value')[0];
+const additionalIncome = document.getElementsByClassName('additional_income-value')[0];
+const additionalExpenses= document.getElementsByClassName('additional_expenses-value')[0];
+const incomePeriod = document.getElementsByClassName(' income_period-value')[0];
+const targetMonthValue = document.getElementsByClassName('target_month-value')[0];
+
+
 
 const salaryAmount = document.querySelector('.salary-amount');
-
-const incomeTitle = document.querySelector('.income-title');
-
+const incomeTitle = document.querySelectorAll('.income-title')[1];
 const incomeAmount = document.querySelector('.income-amount');
-
-const expensesTitle = document.querySelector('.expenses-title');
-
+const expensesTitle = document.querySelectorAll('.expenses-title')[1];
 const expensesAmount = document.querySelector('.expenses-amount');
-
 const additionalExpensesTitle = document.querySelector('.additional_expenses-item');
-
 const depositAmount = document.querySelector('.deposit-amount');
-
 const depositPercent = document.querySelector('.deposit-percent');
-
 const dtargetAmount = document.querySelector('.target-amount');
-
 const periodSelect = document.querySelector('.period-select');
+
