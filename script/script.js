@@ -1,12 +1,9 @@
 "use strict";
 const startButton = document.getElementById('start');
-
 const firstPlus = document.getElementsByTagName('button')[0];
 const secondPlus = document.getElementsByTagName('button')[1];
-
 const chetbox = document.querySelector('#deposit-check');
 let additionalIncomeItem1 = document.querySelectorAll('.additional_income-item');
-
 let budgetDayValue = document.getElementsByClassName('budget_day-value')[0];
 let expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0];
 let additionalIncome = document.getElementsByClassName('additional_income-value')[0];
@@ -54,10 +51,8 @@ let appData = {
         appData.getAddExpenses();
         appData.getAddIncome();
         appData.showResult();
-        cL();
     },
     checkStatrButton : function(){
-
             if(salaryAmount.value === ""){
                 startButton.disabled = true; 
             }else{
@@ -85,7 +80,6 @@ let appData = {
         });
 
     },
-
     getAddExpenses: function(){
         let addExpenses = additionalExpensesTitle.value.split(",");
         addExpenses.forEach(function(item){
@@ -139,8 +133,6 @@ let appData = {
             }
         })
     },
-
-
     getExpensesMonth: function () {
         for (let key in appData) {
             if (appData[key] == appData.expenses) {
@@ -230,29 +222,6 @@ firstPlus.addEventListener("click", appData.addIncomeBlock);
 periodSelect.addEventListener("input",  function(){
     document.querySelector('.period-amount').innerHTML = periodSelect.value;
 })
-
-
-// appData.asking();
-// appData.getExpensesMonth();
-// appData.getBudget();
-// appData.getStatusIncome();
-// appData.getInfoDeposit();
-// appData.calcSaveMoney();
-
-
-
-
-
-
-
-
-
-
-
-
-console.log(`Расходы за месяц ${appData.expensesMonth}`);
-console.log(`${appData.getTargetMonth()}`);
-console.log(appData.getStatusIncome());
 
 console.log(appData.percentDeposit, appData.moneyDeposit,appData.calcSaveMoney());
 function cL(){
