@@ -47,7 +47,6 @@ let appData = {
 
         if (this.toggle === true){
             this.budget = +salaryAmount.value;
-            //this.checkStatrButton();
             this.changeButton();
             this.getexpenses();
             this.getIncome();
@@ -96,6 +95,7 @@ let appData = {
         dtargetAmount.disabled = true; 
     },
     resetButton :function(){
+        document.querySelector('.period-amount').innerHTML = 1;
         salaryAmount.disabled = false; 
         incomeTitle.disabled = false; 
         incomeAmount.disabled = false; 
@@ -150,6 +150,7 @@ let appData = {
             document.querySelectorAll('.expenses-amount')[2].value = "";
             document.querySelectorAll('.expenses-title')[3].value = ""; 
         };
+        periodSelect.value = 1;
 
         budgetMonthValue.value = "0";
         budgetDayValue.value = "0";
@@ -176,13 +177,13 @@ let appData = {
         this.moneyDeposit=0;
         this.expenses= {};
         this.income= {};
-        this.toggle= !appData.toggle;
+        this.toggle= !this.toggle;
 
     },
     changeButton: function(){
-    if(appData.toggle === true ){
+    if(this.toggle === true ){
         startButton.innerHTML = "Сброс";
-        appData.toggle = !appData.toggle;
+        this.toggle = !this.toggle;
     }
     
     },
@@ -210,7 +211,7 @@ let appData = {
         targetMonthValue.value = this.getTargetMonth();
         incomePeriodValue.value = this.calcSaveMoney();
         periodSelect.addEventListener("input",  function(){
-            incomePeriodValue.value = Number(appData.calcSaveMoney());
+            incomePeriodValue.value = Number(this.calcSaveMoney());
         });
 
     },
