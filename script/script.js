@@ -65,6 +65,7 @@ let appData = {
         salaryAmount.disabled = true; 
         incomeTitle.disabled = true; 
         incomeAmount.disabled = true; 
+        periodSelect.disabled = true; 
         if(document.querySelectorAll('.income-amount').length === 2 ){
             document.querySelectorAll('.income-amount')[1].disabled = true;
             document.querySelectorAll('.income-title')[2].disabled = true;
@@ -95,6 +96,7 @@ let appData = {
         dtargetAmount.disabled = true; 
     },
     resetButton :function(){
+        periodSelect.disabled = false;
         document.querySelector('.period-amount').innerHTML = 1;
         salaryAmount.disabled = false; 
         incomeTitle.disabled = false; 
@@ -217,20 +219,20 @@ let appData = {
     },
     getAddExpenses: function(){
         let addExpenses = additionalExpensesTitle.value.split(",");
-        addExpenses.forEach(function(item){
-            item = item.trim();
-            if(item !== ""){
-                appData.ddExpenses.push(item); 
+        for(let i = 0; i < addExpenses.length; i++){
+            addExpenses[i] = addExpenses[i].trim();
+            if(addExpenses[i] !== ""){
+                this.ddExpenses.push(addExpenses[i]); 
             }
-        });
+        };
     },
     getAddIncome: function(){
-        additionalIncomeItem1.forEach(function(item){
-           let itemValue = item.value.trim();
+        for(let i = 0; i < additionalIncomeItem1.length; i++){
+            let itemValue = additionalIncomeItem1[i].value.trim();
            if (itemValue !== ""){
-            appData.addIncome.push(itemValue);
-           }
-        })
+            this.addIncome.push(itemValue);
+             };
+        }   
     },
     addExpensesdBlock : function(){
         let cloneExpendedItem = expendedItem[0].cloneNode(true);
@@ -241,13 +243,13 @@ let appData = {
         }
     },
     getexpenses : function(){
-        expendedItem.forEach(function(item){
-            let itemExpenses = item.querySelector(".expenses-title").value;
-            let cachExpenses = item.querySelector(".expenses-amount").value;
+        for(let i = 0; i < expendedItem.length; i++){
+            let itemExpenses = expendedItem[i].querySelector(".expenses-title").value;
+            let cachExpenses = expendedItem[i].querySelector(".expenses-amount").value;
             if(itemExpenses !== "" &&  cachExpenses!== ""){
-                appData.expenses[itemExpenses] = cachExpenses;
-            }
-        })
+                this.expenses[itemExpenses] = cachExpenses;
+            };
+        };
     },
     addIncomeBlock : function(){
         let cloneExpendedItem = incomeItem[0].cloneNode(true);
@@ -258,13 +260,13 @@ let appData = {
         }
     },
     getIncome: function(){
-        incomeItem.forEach(function(item){
-            let itemExpenses = item.querySelector(".income-title").value;
-            let cachExpenses = item.querySelector(".income-amount").value;
+        for(let i = 0; i < incomeItem.length; i++){
+            let itemExpenses = incomeItem[i].querySelector(".income-title").value;
+            let cachExpenses = incomeItem[i].querySelector(".income-amount").value;
             if(itemExpenses !== "" &&  cachExpenses!== ""){
-                appData.addIncome[itemExpenses] = cachExpenses;
-            }
-        })
+                this.addIncome[itemExpenses] = cachExpenses;
+                }
+            }   
     },
     getExpensesMonth: function () {
         for (let key in this) {
@@ -294,7 +296,7 @@ let appData = {
         
     },
     calcSaveMoney: function(){
-        return appData.budget  * periodSelect.value;
+        return this.budget  * periodSelect.value;
     },
 };
 appData.checkStatrButton();
