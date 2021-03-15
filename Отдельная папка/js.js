@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded", function(){
 
     if(String(daysToNewYear).substr(-1) === '1'){
         numOfDaysToNewYear = "день";
-    }else if(String(daysToNewYear).substr(-1) ==String(daysToNewYear).toString.substr(-1) ==String(daysToNewYear).toString.substr(-1) === '4' ){
+    }else if(String(daysToNewYear).substr(-1) ==String(daysToNewYear).substr(-1) ==String(daysToNewYear).substr(-1) === '4' ){
         numOfDaysToNewYear = "дня";
     }
     else if(String(daysToNewYear).substr(-1) === '5' || String(daysToNewYear).substr(-1) === '6' || String(daysToNewYear).substr(-1) === '7' || String(daysToNewYear).substr(-1)=== '8' || String(daysToNewYear).substr(-1) === '9' || String(daysToNewYear).substr(-1) === '0' ){

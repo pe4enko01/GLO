@@ -1,13 +1,10 @@
 window.addEventListener("DOMContentLoaded", function(){
     "use strict";
-
     function countTimer(deadline){
         let timerHours = document.querySelector("#timer-hours"),
             timerMinutes = document.querySelector("#timer-minutes"),
             timerSeconds = document.querySelector("#timer-seconds");
-
         function getTimeRemaining(){
-
             let dateStop = new Date(deadline).getTime(),
                 dateNow = new Date().getTime(),
                 timeRemaining = (dateStop - dateNow)/1000,
@@ -40,17 +37,21 @@ window.addEventListener("DOMContentLoaded", function(){
             timerMinutes.textContent = timer.minutes;
             timerSeconds.textContent = timer.seconds;
         }
-        
-        if(getTimeRemaining().timeRemaining > 0){
-            setInterval(udateClock, 1000);
-        }else{
-            udateClock();
+        udateClock();
+        function render(){
+            let clearSetInterval = setInterval(function(){
+                let timer = getTimeRemaining();
+                if(timer.timeRemaining > 0){
+                    timerHours.textContent = timer.hours;
+                    timerMinutes.textContent = timer.minutes;
+                    timerSeconds.textContent = timer.seconds;
+                }else{
+                    udateClock();
+                    clearInterval(clearSetInterval);
+                }
+            }, 1000);
         }
-          
-        
+        render();   
     }
-
-    countTimer("15 march 2021");
-    //setInterval(countTimer, 1000, "20 march 2021");
-
+    countTimer("20 march 2021");
 })
