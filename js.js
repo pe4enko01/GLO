@@ -54,4 +54,69 @@ window.addEventListener("DOMContentLoaded", function(){
         render();   
     }
     countTimer("20 march 2021");
+
+    const toogleMenu = ()=>{
+        const btnMenu = document.querySelector('.menu'),
+        menu = document.querySelector('menu'),
+        closeBtn = document.querySelector('.close-btn'),
+        menuItem = menu.querySelectorAll("ul>li");
+
+        const handlerMenu = ()=>{
+            if(!menu.style.transform || menu.style.transform === "translate(-100%)"){
+
+                menu.style.transform = "translate(0)";
+            }else{
+                menu.style.transform = "translate(-100%)";
+            }
+        }
+        btnMenu.addEventListener("click", ()=>{
+            handlerMenu();
+        })
+
+        closeBtn.addEventListener("click", ()=>{
+            handlerMenu();
+        })
+
+        menuItem.forEach((elem)=>{elem.addEventListener("click",handlerMenu)})
+    }
+    toogleMenu();
+
+    //popup
+
+    const togglePopup = ()=>{
+        const popup = document.querySelector(".popup"),
+        popupContent = document.querySelector(".popup-content"),
+        popupBtn = document.querySelectorAll(".popup-btn"),
+        popupClose = document.querySelector(".popup-close ");
+
+        popupBtn.forEach((elem)=>{
+            elem.addEventListener("click", () => {
+                if(document.body.scrollWidth > 768){
+                popup.style.display = "block";
+                let start = 0; // запомнить время начала
+                let timer = setInterval(function() {
+
+                let timePassed =  start;
+        
+                if (timePassed >= (document.body.scrollWidth/2 - 185)) {
+                 clearInterval(timer); 
+                return;
+                }
+                draw(timePassed);
+                start += 3;
+                }, 1);
+            }else{
+                popup.style.display = "block";
+            }
+            });
+        });
+        popupClose.addEventListener("click",()=>{
+            popup.style.display = "none";
+        });
+        function draw(timePassed) {
+            popupContent.style.left = timePassed  + 'px';
+        }
+        
+    }
+    togglePopup();
 })
