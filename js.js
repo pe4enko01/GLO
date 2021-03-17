@@ -62,14 +62,12 @@ window.addEventListener("DOMContentLoaded", function(){
         menuItem = menu.querySelectorAll("ul>li");
 
         const handlerMenu = ()=>{
-            if(!menu.style.transform || menu.style.transform === "translate(-100%)"){
+                menu.classList.toggle("active-menu");
 
-                menu.style.transform = "translate(0)";
-            }else{
-                menu.style.transform = "translate(-100%)";
-            }
         }
         btnMenu.addEventListener("click", ()=>{
+        console.log("🚀 ~ file: js.js ~ line 69 ~ btnMenu.addEventListener ~ addEventListener", "dfi")
+            
             handlerMenu();
         })
 
@@ -108,10 +106,14 @@ window.addEventListener("DOMContentLoaded", function(){
             }else{
                 popup.style.display = "block";
             }
+
             });
         });
         popupClose.addEventListener("click",()=>{
             popup.style.display = "none";
+            popupContent.style.left = "";
+            //popup.classList.add(".popup-content");
+
         });
         function draw(timePassed) {
             popupContent.style.left = timePassed  + 'px';
