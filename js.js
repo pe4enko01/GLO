@@ -55,29 +55,28 @@ window.addEventListener("DOMContentLoaded", function(){
     }
     countTimer("20 march 2021");
 
-    const toogleMenu = ()=>{
+    const toggleMenu = ()=>{
         const btnMenu = document.querySelector('.menu'),
         menu = document.querySelector('menu'),
         closeBtn = document.querySelector('.close-btn'),
-        menuItem = menu.querySelectorAll("ul>li");
+        menuItem = menu.querySelector("ul");
 
         const handlerMenu = ()=>{
                 menu.classList.toggle("active-menu");
 
         }
         btnMenu.addEventListener("click", ()=>{
-        console.log("🚀 ~ file: js.js ~ line 69 ~ btnMenu.addEventListener ~ addEventListener", "dfi")
-            
             handlerMenu();
         })
 
-        closeBtn.addEventListener("click", ()=>{
-            handlerMenu();
+        menu.addEventListener("click",(event)=>{
+            let closeBtnUp = event.target.closest(".menu");
+            if(event.target.tagName === 'A' || event.target.tagName === 'LI' || event.target.classList.contains("close-btn")){
+                handlerMenu();
+            }
         })
-
-        menuItem.forEach((elem)=>{elem.addEventListener("click",handlerMenu)})
     }
-    toogleMenu();
+    toggleMenu();
 
     //popup
 
@@ -109,16 +108,62 @@ window.addEventListener("DOMContentLoaded", function(){
 
             });
         });
-        popupClose.addEventListener("click",()=>{
-            popup.style.display = "none";
-            popupContent.style.left = "";
-            //popup.classList.add(".popup-content");
 
-        });
         function draw(timePassed) {
             popupContent.style.left = timePassed  + 'px';
         }
+        popup.addEventListener("click",(event)=>{
+            let target = event.target;
+            if(target.classList.contains("popup-close")){
+                popup.style.display = "none";
+                popupContent.style.left = "";
+            }else{
+
+                target = target.closest(".popup-content");
+                if(!target){
+                    popup.style.display = "none";
+                    popupContent.style.left = "";
+                }
+            }
+
+        })
         
     }
     togglePopup();
+
+
+    //табы
+    const tabs = () => {
+        const tabHeader = document.querySelector(".service-header"),
+            tab = tabHeader.querySelectorAll(".service-header-tab"),
+            tabContent = document.querySelectorAll(".service-tab");
+
+            const toggleTabContent = (index)=>{
+                for(let i = 0; i < tabContent.length; i++){
+                    if(index === i){
+                        tab[i].classList.add("active");
+                        tabContent[i].classList.remove('d-none');
+                    }else{
+                        tabContent[i].classList.add('d-none');
+                        tab[i].classList.remove("active");
+                    }
+                }
+            }
+            tabHeader.addEventListener("click",(event)=>{
+            let target = event.target;
+            target = target.closest(".service-header-tab");
+            if(target.classList.contains("service-header-tab")){
+                tab.forEach((item, i)=>{
+                    if(item === target){
+                        toggleTabContent(i);
+                    }
+                })
+                
+            }
+
+        })
+        
+
+    };
+    tabs();
 })
