@@ -19,14 +19,14 @@ class ToDo {
         if(this.input.value.trim()){
             const newTodo ={
                 value: this.input.value,
-                completed: true,
+                completed: false,
                 key: this.generateKey(),
             }
             this.todoData.set(newTodo.key, newTodo);
             this.headerInput.value = "";
             this.render();
         }else{
-            alert("Введи задачу");
+            alert("Введите задачу");
         }
         
     }
@@ -36,7 +36,11 @@ class ToDo {
     render(){
         this.todoList.textContent = "";
         this.todoCompleted.textContent = "";
-        this.todoData.forEach(this.createItem, this);
+        let newi = [];
+        for(let i of this.todoData){
+            newi.unshift(this.todoData.get(i[1].key));
+        }
+        newi.forEach(this.createItem, this);
         this.addToSrorage();
     }
     createItem(todo){
