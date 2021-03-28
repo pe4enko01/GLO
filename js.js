@@ -260,3 +260,95 @@ window.addEventListener("DOMContentLoaded", function(){
     }
     slider();
 })
+
+const targetImg = ()=>{
+    const command = document.getElementById("command");
+    const img = document.querySelectorAll(".command__photo");
+    let imgSrc;
+    document.addEventListener('mouseover', (e)=>{
+        if(e.target.classList.contains("command__photo")){
+            imgSrc = e.target.src;
+            e.target.src = e.target.dataset.img;
+        }
+    });
+    command.addEventListener('mouseout', (e)=>{
+    
+        if(e.target.classList.contains("command__photo")){
+            e.target.src = imgSrc; 
+        }
+    });
+
+}
+targetImg();
+
+const replase = ()=>{
+    const inputSq = document.querySelectorAll(".calc-item");
+    const form2Name = document.getElementById("form2-name");
+    const form2Email = document.getElementById("form2-email");
+    const form2Phone = document.getElementById("form2-phone");
+
+    inputSq.forEach((item)=>{
+        item.addEventListener('input', ()=>{
+            item.value = item.value.replace(/\D/, '');
+        })
+    });
+
+    form2Name.addEventListener('input', ()=>{
+        form2Name.value = form2Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+    })
+    form2Name.addEventListener('blur', ()=>{
+        rep(form2Name)
+        form2Name.value = form2Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+        form2Name.value = form2Name.value[0].toUpperCase() + form2Name.value.slice(1);
+        form2Name.value = form2Name.value .replace(/([-])\1{1,}/g, "$1");
+        form2Name.value = form2Name.value.replace(/\s+/g, ' ')
+        
+    })
+
+
+
+    form2Email.addEventListener('input', ()=>{
+        form2Email.type = ""
+        form2Email.value = form2Email.value.replace(/[а-яА-ЯёЁ0-9,:"();=/, ;№[{<|>?#$%^&`+\]}]*?$/, '');
+      
+    })
+    form2Email.addEventListener('blur', ()=>{
+        rep(form2Email);
+        form2Email.value = form2Email.value.replace(/[а-яА-ЯёЁ0-9,:"();=/, ;№[{<|>?#$%^&`+\]}]*?$/, '');
+        form2Email.value = form2Email.value .replace(/([-])\1{1,}/g, "$1");
+        form2Email.value = form2Email.value.replace(/\s+/g, '')
+        
+    })
+
+    
+
+    form2Phone.addEventListener('input', ()=>{
+        form2Phone.value = form2Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;№[{<| >?!@#$~%^&*_`+\]}]*?$/, '');
+    })
+    form2Phone.addEventListener('blur', ()=>{
+        rep(form2Phone);
+        form2Phone.value = form2Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;№[{<| >?!@#$~%^&*_`+\]}]*?$/, '');
+        form2Phone.value = form2Phone.value .replace(/([-])\1{1,}/g, "$1");
+        form2Phone.value = form2Phone.value.replace(/\s+/g, '')
+    })
+}
+
+function rep(form2Name){
+    for(let i = 0; i < form2Name.value.length; i++){
+        if(form2Name.value[0].indexOf("-") === 0){
+            form2Name.value = form2Name.value.slice(1);
+        }
+        if(form2Name.value[0].indexOf(" ") === 0){
+            form2Name.value = form2Name.value.slice(1);
+        }
+    }
+    for(let i = form2Name.value.length; i > 0 ; i--){
+        if(form2Name.value[form2Name.value.length-1].indexOf("-") === 0){
+            form2Name.value = form2Name.value.slice(0, form2Name.value.length -1);
+        }
+        if(form2Name.value[form2Name.value.length-1].indexOf(" ") === 0){
+            form2Name.value = form2Name.value.slice(0, form2Name.value.length -1 );
+        }
+    }
+};
+replase();
