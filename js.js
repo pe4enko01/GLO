@@ -286,7 +286,7 @@ const replase = ()=>{
     const form2Name = document.getElementById("form2-name");
     const form2Email = document.getElementById("form2-email");
     const form2Phone = document.getElementById("form2-phone");
-
+    const form2Message = document.getElementById("form2-message");
     inputSq.forEach((item)=>{
         item.addEventListener('input', ()=>{
             item.value = item.value.replace(/\D/, '');
@@ -299,9 +299,20 @@ const replase = ()=>{
     form2Name.addEventListener('blur', ()=>{
         rep(form2Name)
         form2Name.value = form2Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
-        form2Name.value = form2Name.value[0].toUpperCase() + form2Name.value.slice(1);
+        form2Name.value = form2Name.value[0].toUpperCase() + form2Name.value.slice(1).toLowerCase();
         form2Name.value = form2Name.value .replace(/([-])\1{1,}/g, "$1");
         form2Name.value = form2Name.value.replace(/\s+/g, ' ')
+        
+    })
+
+    form2Message.addEventListener('input', ()=>{
+        form2Message.value = form2Message.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+    })
+    form2Message.addEventListener('blur', ()=>{
+        rep(form2Message)
+        form2Message.value = form2Message.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+        form2Message.value = form2Message.value .replace(/([-])\1{1,}/g, "$1");
+        form2Message.value = form2Message.value.replace(/\s+/g, ' ')
         
     })
 
