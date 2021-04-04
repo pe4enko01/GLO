@@ -277,7 +277,6 @@ const targetImg = ()=>{
             e.target.src = imgSrc; 
         }
     });
-
 }
 targetImg();
 
@@ -384,14 +383,20 @@ const calc = (price = 100)=>{
         }
 
         totalValue.textContent = total;
+
     }
     calcBlock.addEventListener('change', (event)=>{
         const target = event.target;
         if(target === calcType || target === calcSquare || 
             target === calcDay || target === calcCount){
-                countSum()
-;       }
-    })
+                countSum();       }
+        if( calcSquare.value !== "" && calcDay.value !== "" && calcCount.value !== ""){
+            calcSquare.value = "";
+            calcDay.value = "";
+            calcCount.value = "";
+        }
+
+})
 }
 calc()
 
