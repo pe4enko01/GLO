@@ -300,22 +300,22 @@ const replase = ()=>{
     });
 
     form3Name.addEventListener('input', ()=>{
-        form3Name.value = form3Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+        form3Name.value = form3Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+-\]}]*?$/, '');
     })
     form3Name.addEventListener('blur', ()=>{
         rep(form3Name)
-        form3Name.value = form3Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+        form3Name.value = form3Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+-\]}]*?$/, '');
         form3Name.value = form3Name.value[0].toUpperCase() + form3Name.value.slice(1).toLowerCase();
         form3Name.value = form3Name.value .replace(/([-])\1{1,}/g, "$1");
         form3Name.value = form3Name.value.replace(/\s+/g, ' ')
         
     })
     form2Name.addEventListener('input', ()=>{
-        form2Name.value = form2Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+        form2Name.value = form2Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+-\]}]*?$/, '');
     })
     form2Name.addEventListener('blur', ()=>{
         rep(form2Name)
-        form2Name.value = form2Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+        form2Name.value = form2Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+-\]}]*?$/, '');
         form2Name.value = form2Name.value[0].toUpperCase() + form2Name.value.slice(1).toLowerCase();
         form2Name.value = form2Name.value .replace(/([-])\1{1,}/g, "$1");
         form2Name.value = form2Name.value.replace(/\s+/g, ' ')
@@ -323,11 +323,11 @@ const replase = ()=>{
     })
 
     form1Name.addEventListener('input', ()=>{
-        form1Name.value = form1Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+        form1Name.value = form1Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+-\]}]*?$/, '');
     })
     form1Name.addEventListener('blur', ()=>{
         rep(form1Name)
-        form1Name.value = form1Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+        form1Name.value = form1Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+-\]}]*?$/, '');
         form1Name.value = form1Name.value[0].toUpperCase() + form1Name.value.slice(1).toLowerCase();
         form1Name.value = form1Name.value .replace(/([-])\1{1,}/g, "$1");
         form1Name.value = form1Name.value.replace(/\s+/g, ' ')
@@ -337,11 +337,11 @@ const replase = ()=>{
 
 
     form2Message.addEventListener('input', ()=>{
-        form2Message.value = form2Message.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+        form2Message.value = form2Message.value.replace(/[a-zA-Z"()='/№[{<|>@#$~%^&`*_+\]}]*?$/, '');
     })
     form2Message.addEventListener('blur', ()=>{
         rep(form2Message)
-        form2Message.value = form2Message.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+\]}]*?$/, '');
+        form2Message.value = form2Message.value.replace(/[a-zA-Z"()='/№[{<|>@#$~%^&`*_+\]}]*?$/, '');
         form2Message.value = form2Message.value .replace(/([-])\1{1,}/g, "$1");
         form2Message.value = form2Message.value.replace(/\s+/g, ' ')
         
@@ -385,30 +385,30 @@ const replase = ()=>{
 
     
     form3Phone.addEventListener('input', ()=>{
-        form3Phone.value = form3Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;№[{<| >?!@#$~%^&*_`+\]}]*?$/, '');
+        form3Phone.value = form3Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`\]}]*?$/, '');
     })
     form3Phone.addEventListener('blur', ()=>{
         rep(form3Phone);
-        form3Phone.value = form3Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;№[{<| >?!@#$~%^&*_`+\]}]*?$/, '');
+        form3Phone.value = form3Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`\]}]*?$/, '');
         form3Phone.value = form3Phone.value .replace(/([-])\1{1,}/g, "$1");
         form3Phone.value = form3Phone.value.replace(/\s+/g, '')
     })
     form2Phone.addEventListener('input', ()=>{
-        form2Phone.value = form2Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;№[{<| >?!@#$~%^&*_`+\]}]*?$/, '');
+        form2Phone.value = form2Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`\]}]*?$/, '');
     })
     form2Phone.addEventListener('blur', ()=>{
         rep(form2Phone);
-        form2Phone.value = form2Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;№[{<| >?!@#$~%^&*_`+\]}]*?$/, '');
+        form2Phone.value = form2Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`\]}]*?$/, '');
         form2Phone.value = form2Phone.value .replace(/([-])\1{1,}/g, "$1");
         form2Phone.value = form2Phone.value.replace(/\s+/g, '')
     })
 
     form1Phone.addEventListener('input', ()=>{
-        form1Phone.value = form1Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;№[{<| >?!@#$~%^&*_`+\]}]*?$/, '');
+        form1Phone.value = form1Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`\]}]*?$/, '');
     })
     form1Phone.addEventListener('blur', ()=>{
         rep(form1Phone);
-        form1Phone.value = form1Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;№[{<| >?!@#$~%^&*_`+\]}]*?$/, '');
+        form1Phone.value = form1Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`\]}]*?$/, '');
         form1Phone.value = form1Phone.value .replace(/([-])\1{1,}/g, "$1");
         form1Phone.value = form1Phone.value.replace(/\s+/g, '')
     })
@@ -433,3 +433,120 @@ function rep(form2Name){
     }
 };
 replase();
+
+
+
+const sendForm = ()=>{
+    const errorMessage = "Что-то пошло не так",
+    loadMessage = "Загрузка",
+    successMasage = "Спасибо, Мы скоро свяжемся!";
+
+    const form = document.getElementById("form1");
+    const form2 = document.getElementById("form2");
+    const form3 = document.getElementById("form3");
+    const form1Name = document.getElementById("form1-name");
+    const form1Emeil = document.getElementById("form1-email");
+    const form1Phone = document.getElementById("form1-phone");
+    const form2Name = document.getElementById("form2-name");
+    const form2Emeil = document.getElementById("form2-email");
+    const form2Phone = document.getElementById("form2-phone");
+    const form2Message = document.getElementById("form2-message");
+    const form3Name = document.getElementById("form3-name");
+    const form3Emeil = document.getElementById("form3-email");
+    const form3Phone = document.getElementById("form3-phone");
+    const popup = document.querySelector(".popup");
+
+
+
+    const stausMessage = document.createElement("div");
+   // stausMessage.textContent = "Тут будет сообщение";
+   // stausMessage.style.cssText = "font-size: 2rem";
+
+    form.addEventListener("submit", (event)=>{
+        event.preventDefault();
+        form.appendChild(stausMessage);
+        stausMessage.textContent = loadMessage;
+        const formData =new FormData(form);
+        let body = {};
+        
+        for(let val of formData.entries()){
+            body[val[0]] = val[1];
+        }
+        postData(body, ()=>{
+            stausMessage.textContent = successMasage;
+        }, (error)=>{
+            console.error(error);
+            stausMessage.textContent = errorMessage;
+        })
+        form1Name.value = "";
+        form1Emeil.value = "";
+        form1Phone.value = "";
+
+
+
+    });
+     form3.addEventListener("submit", (event)=>{
+        event.preventDefault();
+        form.appendChild(stausMessage);
+        const formData =new FormData(form3);
+        stausMessage.textContent = loadMessage;
+        let body = {};
+         for(let val of formData.entries()){
+             body[val[0]] = val[1];
+            }
+          postData(body,()=>{
+             stausMessage.textContent = successMasage;
+          }, (error)=>{
+             console.error(error);
+             stausMessage.textContent = errorMessage;
+          })
+
+        form3Name.value = "";
+        form3Emeil.value = "";
+        form3Phone.value = "";
+        popup.style.display = "none";
+     });
+
+     form2.addEventListener("submit", (event)=>{
+        event.preventDefault();
+        form.appendChild(stausMessage);
+        const formData =new FormData(form2);
+        stausMessage.textContent = loadMessage;
+        let body = {};
+         for(let val of formData.entries()){
+             body[val[0]] = val[1];
+            }
+          postData(body,()=>{
+             stausMessage.textContent = successMasage;
+          }, (error)=>{
+             console.error(error);
+             stausMessage.textContent = errorMessage;
+          })
+        form2Name.value = "";
+        form2Emeil.value = "";
+        form2Phone.value = "";
+        form2Message.value = "";
+     });
+
+    const postData = (body,outputData, error)=>{
+        const request = new XMLHttpRequest();
+        request.addEventListener('readystatechange', ()=>{
+            
+            if(request.readyState !== 4){
+                return;
+            }
+            if(request.status === 200){
+                outputData()
+
+            }else{
+                error(request.status)
+            }
+        })
+        request.open('POST', "./server.php");
+        request.setRequestHeader('Content-Type', 'multipart/json');
+        
+        request.send(JSON.stringify(body));
+    }
+   
+}
+sendForm();
