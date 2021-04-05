@@ -55,28 +55,48 @@ window.addEventListener("DOMContentLoaded", function(){
     }
     countTimer("20 march 2021");
 
-    const toggleMenu = ()=>{
+    const toogleMenu = ()=>{
         const btnMenu = document.querySelector('.menu'),
         menu = document.querySelector('menu'),
         closeBtn = document.querySelector('.close-btn'),
-        menuItem = menu.querySelector("ul");
+        menuItem = menu.querySelectorAll("ul>li>a"),
+        activeMenu = document.querySelector('main');
 
         const handlerMenu = ()=>{
                 menu.classList.toggle("active-menu");
 
         }
-        btnMenu.addEventListener("click", ()=>{
-            handlerMenu();
-        })
-
-        menu.addEventListener("click",(event)=>{
-            let closeBtnUp = event.target.closest(".menu");
-            if(event.target.tagName === 'A' || event.target.tagName === 'LI' || event.target.classList.contains("close-btn")){
+        document.addEventListener("click", (e)=>{    
+            if(e.target.closest(".menu")){
                 handlerMenu();
+            }else if(e.target.classList.contains("close-btn")){
+                handlerMenu();
+            }else if(!e.target.closest(".active-menu")){
+                menu.classList.remove("active-menu");
             }
-        })
+            
+
+
+
+            // if(menu.classList.contains("active-menu")){
+            //     console.log("🚀 ~ file: js.js ~ line 82 ~ activeMenu.addEventListener ~ target", "LOL")
+            //     activeMenu.addEventListener("click", (e)=>{
+            //         if(e.target.closest(".active-menu") === null){
+                     
+            //             menu.classList.remove("active-menu");
+            //         }
+            //     })
+            
+            
+        });
+
+        // closeBtn.addEventListener("click", ()=>{
+        //     handlerMenu();
+        // })
+
+        menuItem.forEach((elem)=>{elem.addEventListener("click",handlerMenu)});
     }
-    toggleMenu();
+    toogleMenu();
 
     //popup
 
@@ -102,11 +122,13 @@ window.addEventListener("DOMContentLoaded", function(){
                 draw(timePassed);
                 start += 3;
                 }, 1);
-            }else{
-                popup.style.display = "block";
-            }
+                }else{
+                    popup.style.display = "block";
+                }
 
             });
+
+
         });
 
         function draw(timePassed) {
@@ -118,16 +140,13 @@ window.addEventListener("DOMContentLoaded", function(){
                 popup.style.display = "none";
                 popupContent.style.left = "";
             }else{
-
                 target = target.closest(".popup-content");
                 if(!target){
                     popup.style.display = "none";
                     popupContent.style.left = "";
                 }
             }
-
         })
-        
     }
     togglePopup();
 
@@ -404,7 +423,10 @@ const replase = ()=>{
     })
 
     form1Phone.addEventListener('input', ()=>{
-        form1Phone.value = form1Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`\]}]*?$/, '');
+        form1Phone.value = form1Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`]*?$/, '');
+        if(){
+            
+        }
     })
     form1Phone.addEventListener('blur', ()=>{
         rep(form1Phone);
