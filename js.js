@@ -75,19 +75,6 @@ window.addEventListener("DOMContentLoaded", function(){
                 menu.classList.remove("active-menu");
             }
             
-
-
-
-            // if(menu.classList.contains("active-menu")){
-            //     console.log("🚀 ~ file: js.js ~ line 82 ~ activeMenu.addEventListener ~ target", "LOL")
-            //     activeMenu.addEventListener("click", (e)=>{
-            //         if(e.target.closest(".active-menu") === null){
-                     
-            //             menu.classList.remove("active-menu");
-            //         }
-            //     })
-            
-            
         });
 
         // closeBtn.addEventListener("click", ()=>{
@@ -109,6 +96,7 @@ window.addEventListener("DOMContentLoaded", function(){
         popupBtn.forEach((elem)=>{
             elem.addEventListener("click", () => {
                 if(document.body.scrollWidth > 768){
+                popupContent.style.left=0
                 popup.style.display = "block";
                 let start = 0; // запомнить время начала
                 let timer = setInterval(function() {
@@ -120,7 +108,7 @@ window.addEventListener("DOMContentLoaded", function(){
                 return;
                 }
                 draw(timePassed);
-                start += 3;
+                start += 10;
                 }, 1);
                 }else{
                     popup.style.display = "block";
@@ -368,7 +356,7 @@ const replase = ()=>{
 
 
     form3Email.addEventListener('input', ()=>{
-        form3Email.type = ""
+        //form3Email.type = ""
         form3Email.value = form3Email.value.replace(/[а-яА-ЯёЁ0-9,:"();=/, ;№[{<|>?#$%^&`+\]}]*?$/, '');
     })
     form3Email.addEventListener('blur', ()=>{
@@ -379,7 +367,7 @@ const replase = ()=>{
         
     })
     form2Email.addEventListener('input', ()=>{
-        form2Email.type = ""
+        //form2Email.type = ""
         form2Email.value = form2Email.value.replace(/[а-яА-ЯёЁ0-9,:"();=/, ;№[{<|>?#$%^&`+\]}]*?$/, '');
     })
     form2Email.addEventListener('blur', ()=>{
@@ -391,7 +379,7 @@ const replase = ()=>{
     })
 
     form1Email.addEventListener('input', ()=>{
-        form1Email.type = ""
+        //form1Email.type = ""
         form1Email.value = form1Email.value.replace(/[а-яА-ЯёЁ0-9,:"();=/, ;№[{<|>?#$%^&`+\]}]*?$/, '');
     })
     form1Email.addEventListener('blur', ()=>{
@@ -405,6 +393,9 @@ const replase = ()=>{
     
     form3Phone.addEventListener('input', ()=>{
         form3Phone.value = form3Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`\]}]*?$/, '');
+        if(form3Phone.value.length > 13){
+            form3Phone.value = form3Phone.value.slice(0, (form3Phone.value.length-1));
+        }
     })
     form3Phone.addEventListener('blur', ()=>{
         rep(form3Phone);
@@ -414,6 +405,9 @@ const replase = ()=>{
     })
     form2Phone.addEventListener('input', ()=>{
         form2Phone.value = form2Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`\]}]*?$/, '');
+        if(form2Phone.value.length > 13){
+            form2Phone.value = form2Phone.value.slice(0, (form2Phone.value.length-1));
+        }
     })
     form2Phone.addEventListener('blur', ()=>{
         rep(form2Phone);
@@ -424,8 +418,8 @@ const replase = ()=>{
 
     form1Phone.addEventListener('input', ()=>{
         form1Phone.value = form1Phone.value.replace(/[а-яА-Яa-zA-ZёЁ,.:";='/.,;)(№[{<| >?!@#$~%^&*_`]*?$/, '');
-        if(){
-            
+        if(form1Phone.value.length > 13){
+            form1Phone.value = form1Phone.value.slice(0, (form1Phone.value.length-1));
         }
     })
     form1Phone.addEventListener('blur', ()=>{
@@ -486,68 +480,74 @@ const sendForm = ()=>{
 
     form.addEventListener("submit", (event)=>{
         event.preventDefault();
-        form.appendChild(stausMessage);
-        stausMessage.textContent = loadMessage;
-        const formData =new FormData(form);
-        let body = {};
-        
-        for(let val of formData.entries()){
-            body[val[0]] = val[1];
+        if(form1Name.value.length >= 2 && form1Phone.value.length >=7 && form1Emeil.value.indexOf("@") !== -1){
+            form.appendChild(stausMessage);
+            stausMessage.textContent = loadMessage;
+            const formData =new FormData(form);
+            let body = {};
+            
+            for(let val of formData.entries()){
+                body[val[0]] = val[1];
+            }
+            postData(body, ()=>{
+                stausMessage.textContent = successMasage;
+            }, (error)=>{
+                console.error(error);
+                stausMessage.textContent = errorMessage;
+            })
+            form1Name.value = "";
+            form1Emeil.value = "";
+            form1Phone.value = "";
         }
-        postData(body, ()=>{
-            stausMessage.textContent = successMasage;
-        }, (error)=>{
-            console.error(error);
-            stausMessage.textContent = errorMessage;
-        })
-        form1Name.value = "";
-        form1Emeil.value = "";
-        form1Phone.value = "";
 
 
 
     });
      form3.addEventListener("submit", (event)=>{
         event.preventDefault();
-        form.appendChild(stausMessage);
-        const formData =new FormData(form3);
-        stausMessage.textContent = loadMessage;
-        let body = {};
-         for(let val of formData.entries()){
-             body[val[0]] = val[1];
-            }
-          postData(body,()=>{
-             stausMessage.textContent = successMasage;
-          }, (error)=>{
-             console.error(error);
-             stausMessage.textContent = errorMessage;
-          })
-
-        form3Name.value = "";
-        form3Emeil.value = "";
-        form3Phone.value = "";
-        popup.style.display = "none";
+        if(form3Name.value.length >= 2 && form3Phone.value.length >=7  && form3Emeil.value.indexOf("@") !== -1){
+            form.appendChild(stausMessage);
+            const formData =new FormData(form3);
+            stausMessage.textContent = loadMessage;
+            let body = {};
+             for(let val of formData.entries()){
+                 body[val[0]] = val[1];
+                }
+              postData(body,()=>{
+                 stausMessage.textContent = successMasage;
+              }, (error)=>{
+                 console.error(error);
+                 stausMessage.textContent = errorMessage;
+              })
+    
+            form3Name.value = "";
+            form3Emeil.value = "";
+            form3Phone.value = "";
+            popup.style.display = "none";
+        }
      });
 
      form2.addEventListener("submit", (event)=>{
         event.preventDefault();
-        form.appendChild(stausMessage);
-        const formData =new FormData(form2);
-        stausMessage.textContent = loadMessage;
-        let body = {};
-         for(let val of formData.entries()){
-             body[val[0]] = val[1];
-            }
-          postData(body,()=>{
-             stausMessage.textContent = successMasage;
-          }, (error)=>{
-             console.error(error);
-             stausMessage.textContent = errorMessage;
-          })
-        form2Name.value = "";
-        form2Emeil.value = "";
-        form2Phone.value = "";
-        form2Message.value = "";
+        if(form2Name.value.length >= 2 && form2Phone.value.length >=7  && form2Emeil.value.indexOf("@") !== -1){
+            form.appendChild(stausMessage);
+            const formData =new FormData(form2);
+            stausMessage.textContent = loadMessage;
+            let body = {};
+             for(let val of formData.entries()){
+                 body[val[0]] = val[1];
+                }
+              postData(body,()=>{
+                 stausMessage.textContent = successMasage;
+              }, (error)=>{
+                 console.error(error);
+                 stausMessage.textContent = errorMessage;
+              })
+            form2Name.value = "";
+            form2Emeil.value = "";
+            form2Phone.value = "";
+            form2Message.value = "";
+        }
      });
 
     const postData = (body,outputData, error)=>{
@@ -572,3 +572,52 @@ const sendForm = ()=>{
    
 }
 sendForm();
+
+
+//калькулятор
+const calc = (price = 100)=>{
+    let calcType = document.querySelector(".calc-type"),
+    calcBlock = document.querySelector(".calc-block"),
+    calcSquare = document.querySelector(".calc-square"),
+    calcDay = document.querySelector(".calc-day"),
+    calcCount = document.querySelector(".calc-count"),
+    totalValue = document.getElementById("total");
+    
+    
+    const countSum = ()=>{
+        let total = 0;
+        let typeValue = calcType.options[calcType.selectedIndex].value;
+        let square = +calcSquare.value;
+        let countValue = 1;
+        let dayValue = 1;
+        
+        if(calcCount.value > 1){
+            countValue += (calcCount.value - 1) /10;
+        }
+       // console.log("🚀 ~ file: js.js ~ line 359 ~ calc ~ calcType", countValue);
+        if(calcDay.value && calcDay.value < 5){
+            dayValue *= 2;
+        }else if( calcDay.value && calcDay.value < 10){
+            dayValue *= 1.5;
+        }
+        if(typeValue && square){
+            total =Math.floor(price * typeValue * square * countValue * dayValue);
+        }
+
+        totalValue.textContent = total;
+
+    }
+    calcBlock.addEventListener('change', (event)=>{
+        let typeValue = calcType.options[calcType.selectedIndex].value;  
+        const target = event.target;
+        if(typeValue==0){
+            calcSquare.value = "";
+            calcDay.value = "";
+            calcCount.value = "";
+            }
+        if(target === calcType || target === calcSquare || 
+            target === calcDay || target === calcCount){
+                countSum();}
+})
+}
+calc()
