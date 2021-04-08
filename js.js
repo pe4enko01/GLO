@@ -312,7 +312,9 @@ const replase = ()=>{
     form3Name.addEventListener('blur', ()=>{
         rep(form3Name)
         form3Name.value = form3Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+-\]}]*?$/, '');
-        form3Name.value = form3Name.value[0].toUpperCase() + form3Name.value.slice(1).toLowerCase();
+        if(form3Name.value !== ""){
+            form3Name.value = form3Name.value[0].toUpperCase() + form3Name.value.slice(1).toLowerCase();
+        }
         form3Name.value = form3Name.value .replace(/([-])\1{1,}/g, "$1");
         form3Name.value = form3Name.value.replace(/\s+/g, ' ')
         
@@ -323,7 +325,9 @@ const replase = ()=>{
     form2Name.addEventListener('blur', ()=>{
         rep(form2Name)
         form2Name.value = form2Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+-\]}]*?$/, '');
-        form2Name.value = form2Name.value[0].toUpperCase() + form2Name.value.slice(1).toLowerCase();
+        if(form2Name.value !== ""){
+            form2Name.value = form2Name.value[0].toUpperCase() + form2Name.value.slice(1).toLowerCase();
+        }
         form2Name.value = form2Name.value .replace(/([-])\1{1,}/g, "$1");
         form2Name.value = form2Name.value.replace(/\s+/g, ' ')
         
@@ -335,7 +339,9 @@ const replase = ()=>{
     form1Name.addEventListener('blur', ()=>{
         rep(form1Name)
         form1Name.value = form1Name.value.replace(/[a-zA-Z0-9,.:"();='/.,;№[{<|>?!@#$~%^&`*_+-\]}]*?$/, '');
-        form1Name.value = form1Name.value[0].toUpperCase() + form1Name.value.slice(1).toLowerCase();
+        if(form1Name.value !== ""){
+            form1Name.value = form1Name.value[0].toUpperCase() + form1Name.value.slice(1).toLowerCase();
+        }
         form1Name.value = form1Name.value .replace(/([-])\1{1,}/g, "$1");
         form1Name.value = form1Name.value.replace(/\s+/g, ' ')
         
@@ -456,7 +462,7 @@ const sendForm = ()=>{
     const errorMessage = "Что-то пошло не так",
     loadMessage = "Загрузка",
     successMasage = "Спасибо, Мы скоро свяжемся!";
-
+    
     const form = document.getElementById("form1");
     const form2 = document.getElementById("form2");
     const form3 = document.getElementById("form3");
@@ -477,7 +483,6 @@ const sendForm = ()=>{
     const stausMessage = document.createElement("div");
    // stausMessage.textContent = "Тут будет сообщение";
    // stausMessage.style.cssText = "font-size: 2rem";
-
     form.addEventListener("submit", (event)=>{
         event.preventDefault();
         if(form1Name.value.length >= 2 && form1Phone.value.length >=7 && form1Emeil.value.indexOf("@") !== -1){
@@ -489,19 +494,25 @@ const sendForm = ()=>{
             for(let val of formData.entries()){
                 body[val[0]] = val[1];
             }
-            postData(body, ()=>{
-                stausMessage.textContent = successMasage;
-            }, (error)=>{
-                console.error(error);
-                stausMessage.textContent = errorMessage;
-            })
+     
+            const post = postData(body)
+                post
+                .then(stausMessage=>{
+                  stausMessage.textContent = successMasage;
+                  return new Promise((resolve, reject)=>{
+                    setTimeout(()=>{
+                        resolve();
+                    },3000);
+                  })
+                })
+                .then(()=>{
+                    stausMessage.textContent = "";
+                })
+                .catch();
             form1Name.value = "";
             form1Emeil.value = "";
             form1Phone.value = "";
         }
-
-
-
     });
      form3.addEventListener("submit", (event)=>{
         event.preventDefault();
@@ -513,12 +524,20 @@ const sendForm = ()=>{
              for(let val of formData.entries()){
                  body[val[0]] = val[1];
                 }
-              postData(body,()=>{
-                 stausMessage.textContent = successMasage;
-              }, (error)=>{
-                 console.error(error);
-                 stausMessage.textContent = errorMessage;
-              })
+                const post = postData(body)
+                post
+                .then(stausMessage=>{
+                  stausMessage.textContent = successMasage;
+                  return new Promise((resolve, reject)=>{
+                    setTimeout(()=>{
+                        resolve();
+                    },3000);
+                  })
+                })
+                .then(()=>{
+                    stausMessage.textContent = "";
+                })
+                .catch();
     
             form3Name.value = "";
             form3Emeil.value = "";
@@ -537,12 +556,21 @@ const sendForm = ()=>{
              for(let val of formData.entries()){
                  body[val[0]] = val[1];
                 }
-              postData(body,()=>{
-                 stausMessage.textContent = successMasage;
-              }, (error)=>{
-                 console.error(error);
-                 stausMessage.textContent = errorMessage;
-              })
+                const post = postData(body)
+                post
+                .then(stausMessage=>{
+                  stausMessage.textContent = successMasage;
+                  return new Promise((resolve, reject)=>{
+                    setTimeout(()=>{
+                        resolve();
+                    },3000);
+                  })
+                })
+                .then(()=>{
+                    stausMessage.textContent = "";
+                })
+                .catch();
+
             form2Name.value = "";
             form2Emeil.value = "";
             form2Phone.value = "";
@@ -550,24 +578,26 @@ const sendForm = ()=>{
         }
      });
 
-    const postData = (body,outputData, error)=>{
-        const request = new XMLHttpRequest();
-        request.addEventListener('readystatechange', ()=>{
+    const postData = (body)=>{
+        return new Promise((resolve, reject)=>{
+            const request = new XMLHttpRequest();
+            request.addEventListener('readystatechange', ()=>{
+                
+                if(request.readyState !== 4){
+                    return;
+                }
+                if(request.status === 200){
+                    resolve(stausMessage);
+    
+                }else{
+                    reject("Error");
+                }
+            })
+            request.open('POST', "./server.php");
+            request.setRequestHeader('Content-Type', 'multipart/json');
             
-            if(request.readyState !== 4){
-                return;
-            }
-            if(request.status === 200){
-                outputData()
-
-            }else{
-                error(request.status)
-            }
+            request.send(JSON.stringify(body));
         })
-        request.open('POST', "./server.php");
-        request.setRequestHeader('Content-Type', 'multipart/json');
-        
-        request.send(JSON.stringify(body));
     }
    
 }
