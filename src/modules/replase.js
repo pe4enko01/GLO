@@ -137,6 +137,7 @@ const replase = ()=>{
         if(form1Phone.value.length > 13){
             form1Phone.value = form1Phone.value.slice(0, (form1Phone.value.length-1));
         }
+        
     })
     form1Phone.addEventListener('blur', ()=>{
         rep(form1Phone);
